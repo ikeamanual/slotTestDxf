@@ -3,5 +3,6 @@ Groovy script which generates a dxf file to laser cut 2 pieces to test optimal s
 
 ![](graphics/slotTestDxf.png?raw=true)
 
-![Alt text](http://ikeamanual.github.io/slotTestDxf/graphics/slotTestDxf.svg)
-<img src="http://ikeamanual.github.io/slotTestDxf/graphics/slotTestDxf.svg">
+Here is an svg image. ( does not display )
+![Alt text](https://rawgit.com/ikeamanual/slotTestDxf/graphics/slotTestDxf.svg)
+<img src="https://rawgit.com/ikeamanual/slotTestDxf/graphics/slotTestDxf.svg">
