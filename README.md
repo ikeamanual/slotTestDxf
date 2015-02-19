@@ -1,4 +1,4 @@
 # slotTestDxf
 Groovy script which generates a dxf file to laser cut 2 pieces to test optimal slot width
 
-test2
+![](graphics/slotTestDxf.png?raw=true)
