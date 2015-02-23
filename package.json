@@ -1,0 +1,12 @@
+{
+  "name": "slotTestDxf",
+  "version": "1.0.0",
+  "description": "Script which generates a dxf file to laser cut 2 pieces to test optimal slot width",
+  "author": "<ikeamanual@gmail.com>",
+  "scripts": {
+  		"test": "mocha --check-leaks",
+  		"start": "iojs --use-strict slotTestDxf.js"
+  
+  },
+  "license": "MIT"
+ }
