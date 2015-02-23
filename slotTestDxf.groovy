@@ -4,7 +4,7 @@ import groovy.text.SimpleTemplateEngine
 // external parameters
 // dimensions are in mm
 
-thickness = 4	// thickness of the material
+let thickness = 4	// thickness of the material
 slotDepth = 65 / 2
 
 kerf = 0.2  // width in mm of the laser cut. This value is divided by two to correct the dimensions given as input

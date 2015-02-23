@@ -1,4 +1,4 @@
-//'use strict';
+'use strict';
 // external parameters
 // dimensions are in mm
 
@@ -135,7 +135,22 @@ var sumOfAllNumbers = function sumOfAllNumbers(x) {
 var sumOfAllNumbersResult = sumOfAllNumbers(3)
 console.log("sumOfAllNumbers(3) = " + sumOfAllNumbersResult)
 
-var drawRel = drawRel(99, 99, "--")
+let drawRelResult = drawRel(99, 99, "--")
+
+function drawSlots() {
+	console.log("drawSlots")
+	
+	
+	let result = dxfPolylinePreface;
+	result += drawRel(xBase, yBase, "-+");
+	result += drawRel(preLength, yBase, "++");
+	return result;
+}
+
+
+let dxfResult = dxfPreface + '\n';
+dxfResult += drawSlots();
+console.log(`dxfResult = ${dxfResult}`)
 
 module.exports.sumOfAllNumbers = sumOfAllNumbers;
 
