@@ -34,9 +34,9 @@ describe('drawRel()', function() {
 describe('indexCorrection() should return 0, 0, 1, 2, 3, ... n', function() {
 	data_driven([
 		{data:0, expected: 0},
-		{data:0, expected: 0},
-		{data: 1, expected: 1},
-		{data:2, expected: 2},
+		{data:1, expected: 0},
+		{data: 3, expected: 2},
+		{data:4, expected: 3},
 	], function() {
 		it('indexCorrection({data}) should return {expected}', function(ctx) {
 			assert.equal(slotTestDxf.indexCorrection(ctx.data), ctx.expected)
