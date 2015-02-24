@@ -72,10 +72,10 @@ console.log("textTemplate = " + textTemplate)
 /*
 	global x, y coordinates
 */
-var xBase = 0
-var yBase = 0
-var curX = xBase
-var curY = yBase
+let xBase = 0;
+let yBase = 0;
+let curX = xBase;
+let curY = yBase;
 
 /**
 return an absolute dxf xy point as a string
@@ -89,34 +89,34 @@ The 2 characters + or - define is the kerf is added or subtracted from the x and
 */
 function drawRel(x, y, kerfMode) {
 
-	var useX
-	var useY
+	let useX = 0;
+	let useY = 0;
 	switch(kerfMode) {
 		case "++":
-			useX = curX + x + kerf2
-			useY = curY + y + kerf2
-			break
+			useX = curX + x + kerf2;
+			useY = curY + y + kerf2;
+			break;
 		case "+-":
-			useX = curX + x + kerf2
-			useY = curY + y - kerf2
-			break
+			useX = curX + x + kerf2;
+			useY = curY + y - kerf2;
+			break;
 		case "--":
-			useX = curX + x - kerf2
-			useY = curY + y - kerf2
-			break
+			useX = curX + x - kerf2;
+			useY = curY + y - kerf2;
+			break;
 		case "-+":
-			useX = curX + x - kerf2
-			useY = curY + y + kerf2
-			break
+			useX = curX + x - kerf2;
+			useY = curY + y + kerf2;
+			break;
 		default:
-			console.log(`ERROR: drawRel(): unhandeld kerfMode ${kerfMode}`)
+			console.log(`ERROR: drawRel(): unhandeld kerfMode ${kerfMode}`);
 			break;
 	}
-	var result = `10\n${useX}\n20\n${useY}\n`
-	curX += x
-	curY += y
-	console.log(`drawRel(${x}, ${y}, ${kerfMode}) : ${result}`)
-	return result
+	var result = `10\n${useX}\n20\n${useY}\n`;
+	curX += x;
+	curY += y;
+	console.log(`drawRel(${x}, ${y}, ${kerfMode}) : ${result}`);
+	return result;
 }
 
 /**
@@ -132,25 +132,47 @@ var sumOfAllNumbers = function sumOfAllNumbers(x) {
 	return (x * (x + 1)) / 2
 };
 
-var sumOfAllNumbersResult = sumOfAllNumbers(3)
-console.log("sumOfAllNumbers(3) = " + sumOfAllNumbersResult)
-
-let drawRelResult = drawRel(99, 99, "--")
 
 function drawSlots() {
 	console.log("drawSlots")
 	
 	
-	let result = dxfPolylinePreface;
+	let result = dxfPolylinePreface + '\n';
 	result += drawRel(xBase, yBase, "-+");
 	result += drawRel(preLength, yBase, "++");
+	
+	for (let i = 0; i < numberOfSlots; i++) {
+		console.log(`slot ${i}`);
+		
+		result += drawRel(0, -slotDepth, "++")
+		result += drawRel(slotWidth + (slotWidthIncrement * i), 0, "-+")
+		result += drawRel(0, slotDepth, "-+")
+		
+		if (i !== numberOfSlots - 1) {
+			result += drawRel(slotDistance, 0, "++")
+		}
+	}
+	
+	result += drawRel(preLength,0, "++")
+	result += drawRel(0, -slotDepth * 2, "+-")
+	result += drawRel(-((preLength * 2) + (numberOfSlots * slotWidth) + ((numberOfSlots - 1) * slotDistance) + (sumOfAllNumbers(numberOfSlots - 1) * slotWidthIncrement)),0, "--")
+	result += drawRel(0, slotDepth * 2, "-+")
+	
 	return result;
 }
 
 
 let dxfResult = dxfPreface + '\n';
 dxfResult += drawSlots();
+dxfResult += dxfPostface;
 console.log(`dxfResult = ${dxfResult}`)
+
+var fs = require('fs');
+var wstream = fs.createWriteStream('slotTestDxf.dxf');
+wstream.write(dxfResult);
+
+wstream.end();
+
 
 module.exports.sumOfAllNumbers = sumOfAllNumbers;
 
