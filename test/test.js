@@ -31,7 +31,7 @@ describe('drawRel()', function() {
 		})
 })
 
-describe('indexCorrection() should return 0, 0, 1, 2, 3, ... n', function() {
+describe('indexCorrection() should return 0, 0, 1, 2, 3, ... n when input is 0, 1, 2, 3, 4', function() {
 	data_driven([
 		{data:0, expected: 0},
 		{data:1, expected: 0},
