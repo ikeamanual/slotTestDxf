@@ -195,14 +195,14 @@ ${text}
 function drawInfoText() {
 	let result = ""
 
-	let i = numberOfSlots / 2 - 1
+	let i = 1 // numberOfSlots / 2 - 1
 	let incrementFactor = indexCorrection( i )
 	let slotWidthBegin = slotWidth - (numberOfNegativeSlots * slotWidthIncrement)
 	let xOffset = preLength + ( i * slotWidthBegin) + (i * slotDistance) + (sumOfAllNumbers(incrementFactor) * slotWidthIncrement)
 
 	let x = xOffset //preLength / 2 + textHeight / 2
 	let y = -(slotDepth + ( slotDepth / 4))
-	let text = `kerf = ${kerf.toFixed(1)} mm\\Pthickness = ${thickness}`
+	let text = `kerf = ${kerf.toFixed(1)} mm\\Pthickness = ${thickness}\\Pgithub.com/ikeamanual/slotTestDxf`
 	let textHeigth = textHeight
 	let textTemplate = `0
 MTEXT
